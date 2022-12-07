@@ -1,14 +1,20 @@
-// game setup
-    // clear screen, randomize cards
-
 // deck setup
 
-// set up deck as an object with keys for suits, values
+let suits = ["♠", "♥", "♣", "♦"];
+let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+let deck = [];
 
-let deck = {
-    suits: ["♠", "♥", "♣", "♦"],
-    val: ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+//i = suits, j = rank. this will push all 52 cards into deck
+for(let i = 0; i<4; i++){
+    for (let j = 0; j < 13; j++)
+        deck.push(suits[i] + rank[j])
+    
 }
+
+// game setup
+    // clear screen
+    // randomize cards
+
 
 // gameplay
     //function to deal

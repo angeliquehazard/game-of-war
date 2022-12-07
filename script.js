@@ -14,8 +14,13 @@ for(let i = 0; i<4; i++){
 // game setup
     // clear screen
     // randomize cards
-
-
+    //from my pac-man game (fisher-yates?):
+    function shuffle(deck) {
+        return deck.sort(() => Math.random() - 0.5);
+    }
+    shuffle(deck)
+    console.log(deck)
+    
 // gameplay
     //function to deal
     //each player draws a card

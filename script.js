@@ -3,7 +3,7 @@
 let suits = ["♠", "♥", "♣", "♦"];
 let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 let deck = [];
-//how to define how the ranks count?
+//how to define how the ranks count? - use indeces to determine rank
 
 //i = suits, j = rank. this will push all 52 cards into deck
 for(let i = 0; i<4; i++){
@@ -14,8 +14,8 @@ for(let i = 0; i<4; i++){
 // game setup
     // clear screen
     function initialize() {
-        document.getElementById("computerSide").innerHTML = " ";
-        document.getElementById("playerSide").innerHTML = " ";
+        document.getElementById("computerSide").innerHTML = "";
+        document.getElementById("playerSide").innerHTML = "";
         document.getElementById("compDeck").innerHTML = "Number of Cards: 26";
         document.getElementById("playerDeck").innerHTML = "Number of Cards: 26"
         
@@ -26,13 +26,11 @@ for(let i = 0; i<4; i++){
     }
         shuffle(deck)
 }
-
+initialize()
 //how to split the deck in half? or keep deck whole, but display number of 
     //cards left //how to define computerDeck and playerDeck?
 let computerDeck = 26
 let playerDeck = 26
-document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
-document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck
 
 //how to show cards on the browser screen?
 //when draw button is clicked
@@ -40,13 +38,20 @@ let computerCard = deck[0];
 let playerCard = deck[1];
 // let computerCard = computerDeck[0];
 // let playerCard = playerDeck[0];
-document.getElementById("computerSide").innerHTML = computerCard;
-document.getElementById("playerSide").innerHTML = playerCard;
+//each player draws a card - click draw button
+    let button = document.getElementById("draw");
+    // function draw() {
+    //         document.getElementById("computerSide").innerHTML = computerCard;
+    //         document.getElementById("playerSide").innerHTML = playerCard;
+    //     }
+    button.addEventListener("click", function draw(){document.getElementById("computerSide").innerHTML = computerCard;
+            document.getElementById("playerSide").innerHTML = playerCard});
 
-initialize()
+
+
 console.log(deck)
 // gameplay
-    //each player draws a card - press draw button
+
     //use if...else loop for this
         //if computer card greater than player card, add 1 to computer deck 
             //and reduce one from player  deck and clear card fields
@@ -65,3 +70,4 @@ if(computerCard>playerCard) {
     //when someone gets to 52 cards, winner
 
 //winner
+//initialize() here?

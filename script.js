@@ -1,23 +1,39 @@
 let computerDeck = [];
 let playerDeck = [];
-// let computerPile = [];
-// let playerPile = [];
-// deck setup
 
-let suits = ["♠", "♥", "♣", "♦"];
-let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-//let value = []
+
+// deck setup
+let allCards = {
+suits: ["♠", "♥", "♣", "♦"],
+rank: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
+// value: {
+//         "2": 2,
+//         "3": 3,
+//         "4": 4,
+//         "5": 5,
+//         "6": 6,
+//         "7": 7,
+//         "8": 8,
+//         "9": 9,
+//         "10": 10,
+//         "J": 11,
+//         "Q": 12,
+//         "K": 13,
+//         "A": 1
+}
 let deck = [];
+
+//how to assign a value?
+
 
 //i = suits, j = rank. this will push all 52 cards into deck
 for(let i = 0; i<4; i++){
     for (let j = 0; j < 13; j++)
-        deck.push(suits[i] + rank[j])
+    //Per Zakk's suggestion, I want this to be an array of objects instead of an array of strings.
+        deck.push(allCards.suits[i] + allCards.rank[j])
 }
 
 // game setup
-    // clear screen
-
     function initialize() {
         document.getElementById("computerSide").innerHTML = "";
         document.getElementById("playerSide").innerHTML = "";
@@ -28,44 +44,47 @@ for(let i = 0; i<4; i++){
             return deck.sort(() => Math.random() - 0.5);
     }
         shuffle(deck)
+        //split deck in half
         playerDeck = deck.slice(0,26);
         computerDeck = deck.slice(26,52);
+        //show how many cards each player has
         document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
         document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
-}
-
+        console.log(playerDeck[0])
+    }
 
 initialize()
 console.log(playerDeck)
 console.log(computerDeck)
-//how to split the deck in half? or keep deck whole, but display number of 
-    //cards left //how to define computerDeck and playerDeck?
 
-//when draw button is clicked
+//when draw button is clicked, top card from each deck shows
 let computerCard = computerDeck[0];
 let playerCard = playerDeck[0];
 
-//each player draws a card - click draw button
+
     let button = document.getElementById("draw");
-    // while(deck.length > 0) {
+    // while(playerDeck.length > 0 || computerDeck.length > 0) {
     button.addEventListener("click", function draw() {
         document.getElementById("computerSide").innerHTML = computerCard;
         document.getElementById("playerSide").innerHTML = playerCard;
         function checkForWin() {
             if(computerCard.rank>playerCard.rank) {
+                //push cards into computerDeck
+                //update deck counts
                 computerDeck += 1;
                 playerDeck -=1;
                 document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
                 document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
-                //push cards into computerPile
+            
             } else if(computerCard.rank<playerCard.rank) {
+                //push cards into computerDeck
+                //update deck counts
                 computerDeck -= 1;
                 playerDeck += 1;
                 document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
                 document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
-                //push cards into playerPile
             } else {
-                //tie
+                //tie - for now, push each card back to their own deck
             }
             checkForWin()
             }}

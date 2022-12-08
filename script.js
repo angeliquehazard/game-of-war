@@ -1,7 +1,7 @@
-let computerDeck = 26;
-let playerDeck = 26;
-let computerPile = [];
-let playerPile = [];
+let computerDeck = [];
+let playerDeck = [];
+// let computerPile = [];
+// let playerPile = [];
 // deck setup
 
 let suits = ["♠", "♥", "♣", "♦"];
@@ -21,8 +21,6 @@ for(let i = 0; i<4; i++){
     function initialize() {
         document.getElementById("computerSide").innerHTML = "";
         document.getElementById("playerSide").innerHTML = "";
-        document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
-        document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
         
     // randomize cards
     //from my pac-man game (fisher-yates?) need to review arrow functions:
@@ -30,17 +28,26 @@ for(let i = 0; i<4; i++){
             return deck.sort(() => Math.random() - 0.5);
     }
         shuffle(deck)
+        playerDeck = deck.slice(0,26);
+        computerDeck = deck.slice(26,52);
+        document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
+        document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
 }
+
+
 initialize()
+console.log(playerDeck)
+console.log(computerDeck)
 //how to split the deck in half? or keep deck whole, but display number of 
     //cards left //how to define computerDeck and playerDeck?
 
 //when draw button is clicked
-let computerCard = deck[0];
-let playerCard = deck[1];
+let computerCard = computerDeck[0];
+let playerCard = playerDeck[0];
 
 //each player draws a card - click draw button
     let button = document.getElementById("draw");
+    // while(deck.length > 0) {
     button.addEventListener("click", function draw() {
         document.getElementById("computerSide").innerHTML = computerCard;
         document.getElementById("playerSide").innerHTML = playerCard;
@@ -61,8 +68,7 @@ let playerCard = deck[1];
                 //tie
             }
             checkForWin()
-            }
-            }
+            }}
         // document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck; 
         // document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
         );

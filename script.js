@@ -8,22 +8,37 @@ let playerDeck = [];
 let allCards = {
     suits: ["♠", "♥", "♣", "♦"],
     ranks: ["A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K"],
-    // for(let i=0; i<ranks.length; i++) {
-    //     value: ranks[i] + 1;
+    // values: {
+    //     "A": 1,
+    //     "2": 2,
+    //     "3": 3,
+    //     "4": 4,
+    //     "5": 5 ,
+    //     "6": 6,
+    //     "7": 7,
+    //     "8": 8,
+    //     "9": 9,
+    //     "10": 10,
+    //     "J": 11,
+    //     "Q": 12,
+    //     "K": 13
+    // }
 }
   const deck = [];
   buildDeck();
   function buildDeck() {
     allCards.suits.forEach((suit) => {
-      allCards.ranks.forEach((rank) => {
+      allCards.ranks.forEach((rank, indx) => {
         const card = {
-          suit: suit,
-          rank:rank,
+            suit: suit,
+            rank:rank,
+            value: indx + 1
           }
         deck.push(card)
       })
   })
   }
+  
   console.log(deck)
 
 // game setup
@@ -58,6 +73,7 @@ let playerCard = playerDeck[0];
     let button = document.getElementById("draw");
     // while(playerDeck.length > 0 || computerDeck.length > 0) {
     button.addEventListener("click", function draw() {
+        //how to get the display back to numbers and suits?
         document.getElementById("computerSide").innerHTML = computerCard;
         document.getElementById("playerSide").innerHTML = playerCard;
         function checkForWin() {

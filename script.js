@@ -3,35 +3,28 @@ let playerDeck = [];
 
 
 // deck setup
+
+//this seems to work, but why?
 let allCards = {
-suits: ["♠", "♥", "♣", "♦"],
-rank: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-// value: {
-//         "2": 2,
-//         "3": 3,
-//         "4": 4,
-//         "5": 5,
-//         "6": 6,
-//         "7": 7,
-//         "8": 8,
-//         "9": 9,
-//         "10": 10,
-//         "J": 11,
-//         "Q": 12,
-//         "K": 13,
-//         "A": 1
+    suits: ["♠", "♥", "♣", "♦"],
+    ranks: ["A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K"],
+    // for(let i=0; i<ranks.length; i++) {
+    //     value: ranks[i] + 1;
 }
-let deck = [];
-
-//how to assign a value?
-
-
-//i = suits, j = rank. this will push all 52 cards into deck
-for(let i = 0; i<4; i++){
-    for (let j = 0; j < 13; j++)
-    //Per Zakk's suggestion, I want this to be an array of objects instead of an array of strings.
-        deck.push(allCards.suits[i] + allCards.rank[j])
-}
+  const deck = [];
+  buildDeck();
+  function buildDeck() {
+    allCards.suits.forEach((suit) => {
+      allCards.ranks.forEach((rank) => {
+        const card = {
+          suit: suit,
+          rank:rank,
+          }
+        deck.push(card)
+      })
+  })
+  }
+  console.log(deck)
 
 // game setup
     function initialize() {

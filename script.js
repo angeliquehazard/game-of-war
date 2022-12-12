@@ -3,26 +3,10 @@ let playerDeck = [];
 
 
 // deck setup
-
-//this seems to work, but why?
 let allCards = {
     suits: ["♠", "♥", "♣", "♦"],
     ranks: ["A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K"],
-    // values: {
-    //     "A": 1,
-    //     "2": 2,
-    //     "3": 3,
-    //     "4": 4,
-    //     "5": 5 ,
-    //     "6": 6,
-    //     "7": 7,
-    //     "8": 8,
-    //     "9": 9,
-    //     "10": 10,
-    //     "J": 11,
-    //     "Q": 12,
-    //     "K": 13
-    // }
+
 }
   const deck = [];
   buildDeck();
@@ -38,7 +22,6 @@ let allCards = {
       })
   })
   }
-  
   console.log(deck)
 
 // game setup
@@ -58,57 +41,57 @@ let allCards = {
         //show how many cards each player has
         document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
         document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
-        console.log(playerDeck[0])
     }
 
 initialize()
 console.log(playerDeck)
 console.log(computerDeck)
 
+//gameplay
+
 //when draw button is clicked, top card from each deck shows
 let computerCard = computerDeck[0];
 let playerCard = playerDeck[0];
 
+console.log(computerCard.value);
+console.log(playerCard.value);
 
+
+//only lets me draw once - how to fix? i need to use a while loop, but make sure it
+//has a break.
+// while(playerDeck.length>0 || computerDeck.length>0){
     let button = document.getElementById("draw");
-    // while(playerDeck.length > 0 || computerDeck.length > 0) {
     button.addEventListener("click", function draw() {
-        //how to get the display back to numbers and suits?
-        document.getElementById("computerSide").innerHTML = computerCard;
-        document.getElementById("playerSide").innerHTML = playerCard;
-        function checkForWin() {
-            if(computerCard.rank>playerCard.rank) {
-                //push cards into computerDeck
-                //update deck counts
-                computerDeck += 1;
-                playerDeck -=1;
-                document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
-                document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
-            
-            } else if(computerCard.rank<playerCard.rank) {
-                //push cards into computerDeck
-                //update deck counts
-                computerDeck -= 1;
-                playerDeck += 1;
-                document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck;
-                document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
-            } else {
-                //tie - for now, push each card back to their own deck
-            }
-            checkForWin()
-            }}
-        // document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck; 
-        // document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck;
-        );
+        document.getElementById("computerSide").innerHTML = computerCard.suit + computerCard.rank;
+        document.getElementById("playerSide").innerHTML = playerCard.suit + playerCard.rank;
+    })
+    function checkForWin() {
+        if(computerCard.value>playerCard.value) {
+            console.log("computer wins")
+            computerDeck.push(computerCard)
+            computerDeck.push(playerCard)
+            //why isn't the actual array adding the cards? just the display.
+            document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
+            document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
 
-console.log(deck)
-// gameplay
+        } else if(computerCard.value<playerCard.value) {
+            console.log("player wins")
+            playerDeck.push(computerCard)
+            playerDeck.push(playerCard)
+            //update deck counts
+            document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
+            document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
 
-    //use if...else loop for this
-        //if computer card greater than player card, add 1 to computer deck total,
-            //reduce one from player deck total, and push the two cards to computer's deck
-        //if player card greater than computer card, add 1 to player deck total,  
-            //reduce one from computer deck total,
+        } else {
+            console.log("tie")
+            //tie - for now, push each card back to their own deck
+            playerDeck.push(playerCard);
+            computerDeck.push(computerCard)
+        }
+    }
+    checkForWin();
+      
+
         //if same each player places their top 3 cards face down, reveals top cards. 
             //whoever is higher wins all 6 cards. if another tie, reveal another card.
             //repeat for ties, move on for winner
@@ -116,4 +99,3 @@ console.log(deck)
     //when someone gets to 52 cards, winner
 
 //winner
-//initialize() here?

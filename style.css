@@ -2,6 +2,8 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-/* designate area for computer cards, player cards
-cards left */
-/* draw card button */
+#whowins{
+    font-size: 2em;
+    margin: 50px auto;
+    color: red;
+}

@@ -67,17 +67,18 @@ console.log(playerCard.value);
     })
     function checkForWin() {
         if(computerCard.value>playerCard.value) {
-            console.log("computer wins")
-            computerDeck.push(computerCard)
+            document.getElementById("whowins").innerHTML = "Computer Wins"
+            // computerDeck.push(computerCard)
             computerDeck.push(playerCard)
-            //why isn't the actual array adding the cards? just the display.
+            playerDeck.length--
             document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
             document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
 
         } else if(computerCard.value<playerCard.value) {
-            console.log("player wins")
+            document.getElementById("whowins").innerHTML = "Player Wins"
             playerDeck.push(computerCard)
-            playerDeck.push(playerCard)
+            // playerDeck.push(playerCard)
+            computerDeck.length--
             //update deck counts
             document.getElementById("compDeck").innerHTML = "Number of Cards: " + computerDeck.length;
             document.getElementById("playerDeck").innerHTML = "Number of Cards: " + playerDeck.length;
@@ -90,7 +91,8 @@ console.log(playerCard.value);
         }
     }
     checkForWin();
-      
+    console.log(computerDeck)
+    console.log(playerDeck)
 
         //if same each player places their top 3 cards face down, reveals top cards. 
             //whoever is higher wins all 6 cards. if another tie, reveal another card.
